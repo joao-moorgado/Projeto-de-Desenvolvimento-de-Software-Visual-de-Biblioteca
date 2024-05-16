@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Software_Visual_de_Biblioteca.props" />
+</Project>
