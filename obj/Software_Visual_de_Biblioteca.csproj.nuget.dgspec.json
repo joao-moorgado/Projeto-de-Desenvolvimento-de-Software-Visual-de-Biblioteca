@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj": {}
+    "/home/alex/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj": {
+    "/home/alex/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj",
+        "projectUniqueName": "/home/alex/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj",
         "projectName": "Software_Visual_de_Biblioteca",
-        "projectPath": "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj",
-        "packagesPath": "C:\\Users\\Gabi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabi\\Sistema-Biblioteca\\obj\\",
+        "projectPath": "/home/alex/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj",
+        "packagesPath": "/home/alex/.nuget/packages/",
+        "outputPath": "/home/alex/Sistema-Biblioteca/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Gabi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/alex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
