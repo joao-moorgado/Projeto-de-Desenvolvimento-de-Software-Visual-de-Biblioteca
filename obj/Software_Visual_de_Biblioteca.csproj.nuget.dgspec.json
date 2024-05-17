@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/joao_morgado/Documents/Tópiocos Especiais em Sistemas/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj": {}
+    "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj": {}
   },
   "projects": {
-    "/home/joao_morgado/Documents/Tópiocos Especiais em Sistemas/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj": {
+    "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/joao_morgado/Documents/Tópiocos Especiais em Sistemas/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj",
+        "projectUniqueName": "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj",
         "projectName": "Software_Visual_de_Biblioteca",
-        "projectPath": "/home/joao_morgado/Documents/Tópiocos Especiais em Sistemas/Sistema-Biblioteca/Software_Visual_de_Biblioteca.csproj",
-        "packagesPath": "/home/joao_morgado/.nuget/packages/",
-        "outputPath": "/home/joao_morgado/Documents/Tópiocos Especiais em Sistemas/Sistema-Biblioteca/obj/",
+        "projectPath": "C:\\Users\\Gabi\\Sistema-Biblioteca\\Software_Visual_de_Biblioteca.csproj",
+        "packagesPath": "C:\\Users\\Gabi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gabi\\Sistema-Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/joao_morgado/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Gabi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -56,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

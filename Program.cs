@@ -6,5 +6,6 @@ var app = builder.Build();
 
 app.MapPost("/api/livro/cadastrar", async ([FromBody] Livro livro) => {return Results.Created(" ", livro);});
 
+app.MapPost("/api/genero/cadastrar", async ([FromBody] Genero genero) => {return Results.Created(" ", genero);});
 
 app.Run();
