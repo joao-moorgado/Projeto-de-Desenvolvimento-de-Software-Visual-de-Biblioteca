@@ -6,28 +6,57 @@ builder.Services.AddDbContext<AppDataContext>();
 var app = builder.Build();
 
 app.MapPost("/api/livro/cadastrar", ([FromBody] Livro livro, [FromServices] AppDataContext ctx) => 
-//Verificar se o autor existe
-{Autor? autor =
-        ctx.Autores.Find(livro.AutorId);
+{
+    // Verifica se o livro existe
+    if (ctx.Livros.Any(l => l.Nome == livro.Nome))
+    {
+        return Results.BadRequest("Livro já existe!");
+    }
 
+    // Verifica se o autor e o genero existem
+    Autor? autor = ctx.Autores.Find(livro.AutorId);
     if (autor is null)
+    {
         return Results.NotFound("Autor não encontrado");
+    }
+
+    Genero? genero = ctx.Generos.Find(livro.GeneroId);
+    if (genero is null)
+    {
+        return Results.NotFound("Gênero não encontrado");
+    }
 
     livro.Autor = autor;
-
-Genero? genero =
-        ctx.Generos.Find(livro.GeneroId);
-
-    if (genero is null)
-        return Results.NotFound("Genero não encontrado");
-
     livro.Genero = genero;
 
-return Results.Created(" ", livro);});
+    ctx.Livros.Add(livro);
+    ctx.SaveChanges();
 
-app.MapPost("/api/autor/cadastrar", ([FromBody] Autor autor, [FromServices] AppDataContext ctx) => {return Results.Created(" ", autor);});
+    return Results.Created(" ", livro);
+});
+app.MapPost("/api/autor/cadastrar", ([FromBody] Autor autor, [FromServices] AppDataContext ctx) =>
+ {if (ctx.Autores.Any(a => a.Nome == autor.Nome))
+    {
+        return Results.BadRequest("Autor já existe!");
+    }
 
-app.MapPost("/api/genero/cadastrar", ([FromBody] Genero genero,  [FromServices] AppDataContext ctx) => {return Results.Created(" ", genero);});
+    ctx.Autores.Add(autor);
+    ctx.SaveChanges();
+    return Results.Created(" ", autor);
+});
+
+app.MapPost("/api/genero/cadastrar", ([FromBody] Genero genero,  [FromServices] AppDataContext ctx) => 
+{
+    // Verificar se o genero existe
+    if (ctx.Generos.Any(g => g.Nome == genero.Nome))
+    {
+        return Results.BadRequest("Gênero já existe!");
+    }
+
+    ctx.Generos.Add(genero);
+    ctx.SaveChanges();
+
+    return Results.Created(" ", genero);});
 
 //listar livros
 app.MapGet("/api/livro/listar",
