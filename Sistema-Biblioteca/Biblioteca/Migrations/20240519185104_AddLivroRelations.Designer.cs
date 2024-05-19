@@ -3,6 +3,7 @@ using System;
 using Biblioteca.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240519185104_AddLivroRelations")]
+    partial class AddLivroRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
@@ -77,13 +80,13 @@ namespace Biblioteca.Migrations
             modelBuilder.Entity("Biblioteca.Models.Livro", b =>
                 {
                     b.HasOne("Biblioteca.Models.Autor", "Autor")
-                        .WithMany()
+                        .WithMany("Livros")
                         .HasForeignKey("AutorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Biblioteca.Models.Genero", "Genero")
-                        .WithMany()
+                        .WithMany("Livros")
                         .HasForeignKey("GeneroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -91,6 +94,16 @@ namespace Biblioteca.Migrations
                     b.Navigation("Autor");
 
                     b.Navigation("Genero");
+                });
+
+            modelBuilder.Entity("Biblioteca.Models.Autor", b =>
+                {
+                    b.Navigation("Livros");
+                });
+
+            modelBuilder.Entity("Biblioteca.Models.Genero", b =>
+                {
+                    b.Navigation("Livros");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,7 @@ public class Autor {
 
     public string? Id { get; set; }
     public string? Nome { get; set; }
-   
+    
 
     public Autor() {
         Id = Guid.NewGuid().ToString();

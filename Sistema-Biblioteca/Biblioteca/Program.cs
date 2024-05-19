@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Biblioteca.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDataContext>();
@@ -64,7 +65,7 @@ app.MapGet("/api/livro/listar",
 {
     if (ctx.Livros.Any())
     {
-        return Results.Ok(ctx.Livros.ToList());
+        return Results.Ok(ctx.Livros.Include(x => x.Autor).Include(x => x.Genero));
     }
     return Results.NotFound("Tabela vazia!");
 });

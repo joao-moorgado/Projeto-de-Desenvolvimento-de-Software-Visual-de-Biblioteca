@@ -4,6 +4,7 @@ public class Genero {
 
     public string? Id { get; set; }
     public string? Nome { get; set; }
+    
 
     public Genero() {
         Id = Guid.NewGuid().ToString();
