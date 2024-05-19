@@ -93,7 +93,7 @@ app.MapGet("/api/autor/listar",
 });
 
 //alterar livro por id
-app.MapPut("/api/livro/atualizar{id}", ([FromRoute] string id, [FromBody] Livro livroAtualizado, [FromServices] AppDataContext ctx) =>
+app.MapPatch("/api/livro/atualizar{id}", ([FromRoute] string id, [FromBody] Livro livroAtualizado, [FromServices] AppDataContext ctx) =>
 {
     Livro? livro = ctx.Livros.Find(id);
     if (livro is null) 
@@ -112,7 +112,7 @@ app.MapPut("/api/livro/atualizar{id}", ([FromRoute] string id, [FromBody] Livro 
 });
 
 //alterar genero por id
-app.MapPut("/api/genero/atualizar{id}", ([FromRoute] string id, [FromBody] Genero generoAtualizado, [FromServices] AppDataContext ctx) =>
+app.MapPatch("/api/genero/atualizar{id}", ([FromRoute] string id, [FromBody] Genero generoAtualizado, [FromServices] AppDataContext ctx) =>
 {
     Genero? genero = ctx.Generos.Find(id);
     if (genero is null) 
@@ -129,7 +129,7 @@ app.MapPut("/api/genero/atualizar{id}", ([FromRoute] string id, [FromBody] Gener
 });
 
 //alterar autor por id
-app.MapPut("/api/autor/atualizar{id}", ([FromRoute] string id, [FromBody] Autor autorAtualizado, [FromServices] AppDataContext ctx) =>
+app.MapPatch("/api/autor/atualizar{id}", ([FromRoute] string id, [FromBody] Autor autorAtualizado, [FromServices] AppDataContext ctx) =>
 {
     Autor? autor = ctx.Autores.Find(id);
     if (autor is null) 
