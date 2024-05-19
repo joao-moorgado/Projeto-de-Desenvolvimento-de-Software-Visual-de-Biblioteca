@@ -1,4 +1,4 @@
-namespace Sistema_Biblioteca.Models;
+namespace Biblioteca.Models;
 
 public class Autor {
 
