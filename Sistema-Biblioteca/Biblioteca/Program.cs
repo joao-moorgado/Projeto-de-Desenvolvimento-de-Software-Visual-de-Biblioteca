@@ -5,11 +5,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDataContext>();
 var app = builder.Build();
 
-app.MapPost("/api/livro/cadastrar", ([FromBody] Livro livro) => {return Results.Created(" ", livro);});
+app.MapPost("/api/livro/cadastrar", ([FromBody] Livro livro, [FromServices] AppDataContext ctx) => 
+//Verificar se o autor existe
+{Autor? autor =
+        ctx.Autores.Find(livro.AutorId);
 
-app.MapPost("/api/autor/cadastrar", ([FromBody] Autor autor) => {return Results.Created(" ", autor);});
+    if (autor is null)
+        return Results.NotFound("Autor não encontrado");
 
-app.MapPost("/api/genero/cadastrar", ([FromBody] Genero genero) => {return Results.Created(" ", genero);});
+    livro.Autor = autor;
+
+Genero? genero =
+        ctx.Generos.Find(livro.GeneroId);
+
+    if (genero is null)
+        return Results.NotFound("Genero não encontrado");
+
+    livro.Genero = genero;
+
+return Results.Created(" ", livro);});
+
+app.MapPost("/api/autor/cadastrar", ([FromBody] Autor autor, [FromServices] AppDataContext ctx) => {return Results.Created(" ", autor);});
+
+app.MapPost("/api/genero/cadastrar", ([FromBody] Genero genero,  [FromServices] AppDataContext ctx) => {return Results.Created(" ", genero);});
 
 //listar livros
 app.MapGet("/api/livro/listar",

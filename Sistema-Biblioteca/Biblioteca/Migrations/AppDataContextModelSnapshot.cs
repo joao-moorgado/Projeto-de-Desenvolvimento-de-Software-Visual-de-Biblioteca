@@ -48,10 +48,22 @@ namespace Biblioteca.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("AutorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AutorId1")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("DataPublicacao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Descricao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GeneroId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("GeneroId1")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
@@ -59,7 +71,26 @@ namespace Biblioteca.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AutorId1");
+
+                    b.HasIndex("GeneroId1");
+
                     b.ToTable("Livros");
+                });
+
+            modelBuilder.Entity("Biblioteca.Models.Livro", b =>
+                {
+                    b.HasOne("Biblioteca.Models.Autor", "Autor")
+                        .WithMany()
+                        .HasForeignKey("AutorId1");
+
+                    b.HasOne("Biblioteca.Models.Genero", "Genero")
+                        .WithMany()
+                        .HasForeignKey("GeneroId1");
+
+                    b.Navigation("Autor");
+
+                    b.Navigation("Genero");
                 });
 #pragma warning restore 612, 618
         }
