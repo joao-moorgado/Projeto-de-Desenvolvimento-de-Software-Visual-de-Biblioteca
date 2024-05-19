@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20240519185104_AddLivroRelations")]
-    partial class AddLivroRelations
+    [Migration("20240519212407_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,7 +52,6 @@ namespace Biblioteca.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AutorId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DataPublicacao")
@@ -62,7 +61,6 @@ namespace Biblioteca.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GeneroId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
@@ -80,30 +78,16 @@ namespace Biblioteca.Migrations
             modelBuilder.Entity("Biblioteca.Models.Livro", b =>
                 {
                     b.HasOne("Biblioteca.Models.Autor", "Autor")
-                        .WithMany("Livros")
-                        .HasForeignKey("AutorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("AutorId");
 
                     b.HasOne("Biblioteca.Models.Genero", "Genero")
-                        .WithMany("Livros")
-                        .HasForeignKey("GeneroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("GeneroId");
 
                     b.Navigation("Autor");
 
                     b.Navigation("Genero");
-                });
-
-            modelBuilder.Entity("Biblioteca.Models.Autor", b =>
-                {
-                    b.Navigation("Livros");
-                });
-
-            modelBuilder.Entity("Biblioteca.Models.Genero", b =>
-                {
-                    b.Navigation("Livros");
                 });
 #pragma warning restore 612, 618
         }

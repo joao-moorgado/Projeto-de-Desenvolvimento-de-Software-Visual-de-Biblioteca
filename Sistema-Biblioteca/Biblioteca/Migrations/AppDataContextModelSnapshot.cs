@@ -49,7 +49,6 @@ namespace Biblioteca.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AutorId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DataPublicacao")
@@ -59,7 +58,6 @@ namespace Biblioteca.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GeneroId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
@@ -78,15 +76,11 @@ namespace Biblioteca.Migrations
                 {
                     b.HasOne("Biblioteca.Models.Autor", "Autor")
                         .WithMany()
-                        .HasForeignKey("AutorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AutorId");
 
                     b.HasOne("Biblioteca.Models.Genero", "Genero")
                         .WithMany()
-                        .HasForeignKey("GeneroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GeneroId");
 
                     b.Navigation("Autor");
 

@@ -43,35 +43,33 @@ namespace Biblioteca.Migrations
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
                     DataPublicacao = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    AutorId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AutorId1 = table.Column<string>(type: "TEXT", nullable: true),
-                    GeneroId = table.Column<int>(type: "INTEGER", nullable: false),
-                    GeneroId1 = table.Column<string>(type: "TEXT", nullable: true)
+                    AutorId = table.Column<string>(type: "TEXT", nullable: true),
+                    GeneroId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Livros", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Livros_Autores_AutorId1",
-                        column: x => x.AutorId1,
+                        name: "FK_Livros_Autores_AutorId",
+                        column: x => x.AutorId,
                         principalTable: "Autores",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Livros_Generos_GeneroId1",
-                        column: x => x.GeneroId1,
+                        name: "FK_Livros_Generos_GeneroId",
+                        column: x => x.GeneroId,
                         principalTable: "Generos",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Livros_AutorId1",
+                name: "IX_Livros_AutorId",
                 table: "Livros",
-                column: "AutorId1");
+                column: "AutorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Livros_GeneroId1",
+                name: "IX_Livros_GeneroId",
                 table: "Livros",
-                column: "GeneroId1");
+                column: "GeneroId");
         }
 
         /// <inheritdoc />
