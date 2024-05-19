@@ -169,6 +169,10 @@ app.MapDelete("/api/genero/deletar{id}", ([FromRoute] string id, [FromServices] 
         return Results.
             NotFound("Gênero não encontrado!");
     }
+    if (ctx.Livros.Any(l => l.GeneroId == genero.Id))
+        {
+            return Results.BadRequest("Não é possível excluir um genero que tenha livros associados.");
+        }
 
     ctx.Generos.Remove(genero);
     ctx.SaveChanges();
@@ -184,6 +188,10 @@ app.MapDelete("/api/autor/deletar{id}", ([FromRoute] string id, [FromServices] A
         return Results.
             NotFound("Autor não encontrado!");
     }
+    if (ctx.Livros.Any(l => l.AutorId == autor.Id))
+        {
+            return Results.BadRequest("Não é possível excluir um autor que tenha livros associados.");
+        }
 
     ctx.Autores.Remove(autor);
     ctx.SaveChanges();
