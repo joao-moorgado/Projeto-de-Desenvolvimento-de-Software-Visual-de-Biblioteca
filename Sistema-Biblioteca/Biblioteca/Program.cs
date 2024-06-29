@@ -198,4 +198,47 @@ app.MapDelete("/api/autor/deletar/{id}", ([FromRoute] string id, [FromServices] 
     return Results.Ok("Autor removido com sucesso.");
 });
 
+//realizar emprestimo
+app.MapPost("/api/emprestimo/realizar", ([FromBody] Emprestimo emprestimo, [FromServices] AppDataContext ctx) => 
+{
+    Livro? livro = ctx.Livros.Find(emprestimo.LivroId);
+    if (livro is null)
+    {
+        return Results.NotFound("Livro não encontrado");
+    }
+
+    if (ctx.Emprestimos.Any(e => e.LivroId == emprestimo.LivroId && e.DataDevolucao == null))
+    {
+        return Results.BadRequest("Livro já emprestado");
+    }
+
+    emprestimo.DataEmprestimo = DateTime.Now;
+    ctx.Emprestimos.Add(emprestimo);
+    ctx.SaveChanges();
+
+    return Results.Created($"/api/emprestimo/{emprestimo.Id}", emprestimo);
+});
+
+// reservar Livro
+app.MapPost("/api/reserva/realizar", ([FromBody] Reserva reserva, [FromServices] AppDataContext ctx) => 
+{
+    Livro? livro = ctx.Livros.Find(reserva.LivroId);
+    if (livro is null)
+    {
+        return Results.NotFound("Livro não encontrado");
+    }
+
+    if (ctx.Reservas.Any(r => r.LivroId == reserva.LivroId && r.DataReserva > DateTime.Now))
+    {
+        return Results.BadRequest("Livro já reservado");
+    }
+
+    reserva.DataReserva = DateTime.Now;
+    ctx.Reservas.Add(reserva);
+    ctx.SaveChanges();
+
+    return Results.Created($"/api/reserva/{reserva.Id}", reserva);
+});
+
+
 app.Run();
