@@ -16,6 +16,8 @@ namespace Biblioteca.Models;
 
         public Emprestimo(string livroId, string usuarioId) {
             Id = Guid.NewGuid().ToString();
+            LivroId = livroId;
+            UsuarioId = usuarioId;
             DataEmprestimo = DateTime.Now;
             DataDevolucao = DataEmprestimo.Value.AddDays(7);
         }

@@ -14,6 +14,12 @@ namespace Biblioteca.Models;
         
          public Reserva() {
         Id = Guid.NewGuid().ToString();
-    }
+        }
+
+        public Reserva(string livroId, string usuarioId, DateTime dataReserva) {
+            LivroId = livroId;
+            UsuarioId = usuarioId;
+            DataReserva = dataReserva;
+        }
 
     }
