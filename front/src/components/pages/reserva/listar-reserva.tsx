@@ -43,8 +43,8 @@ function ListarReserva() {
             <tbody>
               {reservas.map((reserva) => (
                 <tr key={reserva.id}>
-                  <td>{reserva.livro}</td>
-                  <td>{reserva.usuario}</td>
+                  <td>{reserva.livroId}</td>
+                  <td>{reserva.usuarioId}</td>
                   <td>{reserva.dataReserva}</td>
                   <td>{
                     //mostrar se disponível
