@@ -14,7 +14,7 @@ function AlterarLivro() {
   
     useEffect(() => {
       if (id) {
-        fetch("http://localhost:5296/api/livro/buscar/${id}")
+        fetch(`http://localhost:5296/api/livro/buscar/${id}`)
           .then((resposta) => resposta.json())
           .then((livro: Livro) => {
             setNome(livro.nome);
@@ -23,7 +23,7 @@ function AlterarLivro() {
             setDisponibilidade(livro.disponibilidade);
           });
       }
-    }, []);
+    }, [id]);
   
     function alterarLivro(e: any) {
       const livro: Livro = {
