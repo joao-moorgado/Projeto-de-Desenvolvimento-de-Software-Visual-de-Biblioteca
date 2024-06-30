@@ -39,6 +39,8 @@ function ListarEmprestimo() {
                 <th>Usuario</th>
                 <th>Data Emprestimo</th>
                 <th>Data Devoulação</th>
+                <th>Alterar</th>
+                <th>Deletar</th>
               </tr>
             </thead>
             <tbody>
@@ -48,19 +50,6 @@ function ListarEmprestimo() {
                   <td>{emprestimo.usuarioId}</td>
                   <td>{emprestimo.dataEmprestimo}</td>
                   <td>{emprestimo.dataDevolucao}</td>
-                  <td>{
-                    //mostrar se disponível
-                    }</td>
-                  <td>
-                  <Link to={"/pages/reserva/cadastrar/${emprestimo.id}"}>
-                      Reservar
-                    </Link>
-                  </td>
-                  <td>
-                  <Link to={"/pages/emprestimo/cadastrar/${emprestimo.id}"}>
-                      Emprestar
-                    </Link>
-                  </td>
                   <td>
                     <Link to={"/pages/emprestimo/alterar/${emprestimo.id}"}>
                       Alterar

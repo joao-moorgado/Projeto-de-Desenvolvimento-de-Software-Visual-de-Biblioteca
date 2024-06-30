@@ -38,6 +38,8 @@ function ListarReserva() {
                 <th>Livro</th>
                 <th>Usuário</th>
                 <th>Data Reserva</th>
+                <th>Alterar</th>
+                <th>Deletar</th>
               </tr>
             </thead>
             <tbody>
@@ -46,19 +48,6 @@ function ListarReserva() {
                   <td>{reserva.livroId}</td>
                   <td>{reserva.usuarioId}</td>
                   <td>{reserva.dataReserva}</td>
-                  <td>{
-                    //mostrar se disponível
-                    }</td>
-                  <td>
-                  <Link to={"/pages/reserva/cadastrar/${reserva.id}"}>
-                      Reservar
-                    </Link>
-                  </td>
-                  <td>
-                  <Link to={"/pages/reserva/cadastrar/${reserva.id}"}>
-                      Emprestar
-                    </Link>
-                  </td>
                   <td>
                     <Link to={"/pages/reserva/alterar/${reserva.id}"}>
                       Alterar

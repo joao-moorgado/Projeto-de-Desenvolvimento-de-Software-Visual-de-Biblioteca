@@ -55,9 +55,7 @@ function ListarLivro() {
                   <td>{livro.autorId}</td>
                   <td>{livro.generoId}</td>
                   <td>{livro.dataPublicacao}</td>
-                  <td>{
-                    //mostrar se disponível
-                    }</td>
+                  <td>{livro.disponibilidade}</td>
                   <td>
                   <Link to={"/pages/reserva/cadastrar/${livro.id}"}>
                       Reservar
