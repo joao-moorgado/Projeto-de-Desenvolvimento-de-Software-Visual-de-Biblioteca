@@ -18,16 +18,6 @@ function ListarLivro() {
             setLivros(livros);
           });
       }
-    
-      function reservar(id: string) {
-        console.log(`Id: ${id}`);
-        axios
-          .delete("/api/livro/deletar/${id}")
-          .then((resposta) => {
-            console.log(resposta.data);
-            setLivros(resposta.data);
-          });
-      }
 
       function deletar(id: string) {
         console.log("Id: ${id}");
@@ -53,8 +43,8 @@ function ListarLivro() {
                 <th>Disponibilidade</th>
                 <th>Reservar</th>
                 <th>Emprestar</th>
-                <th>Deletar</th>
                 <th>Alterar</th>
+                <th>Deletar</th>
               </tr>
             </thead>
             <tbody>
@@ -70,13 +60,19 @@ function ListarLivro() {
                     //mostrar se disponível
                     }</td>
                   <td>
-                    <button
-                      onClick={() => {
-                        //reservar(livro.id!);
-                      }}
-                    >
+                  <Link to={"/pages/reserva/cadastrar/${livro.id}"}>
                       Reservar
-                    </button>
+                    </Link>
+                  </td>
+                  <td>
+                  <Link to={"/pages/emprestimo/cadastrar/${livro.id}"}>
+                      Emprestar
+                    </Link>
+                  </td>
+                  <td>
+                    <Link to={"/pages/livro/alterar/${livro.id}"}>
+                      Alterar
+                    </Link>
                   </td>
                   <td>
                     <button
@@ -86,11 +82,6 @@ function ListarLivro() {
                     >
                       Deletar
                     </button>
-                  </td>
-                  <td>
-                    <Link to={"/pages/livro/alterar/${livro.id}"}>
-                      Alterar
-                    </Link>
                   </td>
                 </tr>
               ))}
