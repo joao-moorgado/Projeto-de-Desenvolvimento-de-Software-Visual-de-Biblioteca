@@ -9,10 +9,16 @@ namespace Biblioteca.Models;
         public Usuario? Usuario { get; set; }
         public DateTime? DataEmprestimo { get; set; }
         public DateTime? DataDevolucao { get; set; }
-         public Emprestimo() {
-        Id = Guid.NewGuid().ToString();
-    }
 
+        public Emprestimo() {
+        Id = Guid.NewGuid().ToString();
+        }
+
+        public Emprestimo(string livroId, string usuarioId) {
+            Id = Guid.NewGuid().ToString();
+            DataEmprestimo = DateTime.Now;
+            DataDevolucao = DataEmprestimo.Value.AddDays(7);
+        }
 
 
     }

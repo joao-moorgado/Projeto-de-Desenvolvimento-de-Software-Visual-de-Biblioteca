@@ -35,7 +35,6 @@ function ListarLivro() {
           <table border={1}>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Título</th>
                 <th>Sinopse</th>
                 <th>Autor</th>
@@ -51,7 +50,6 @@ function ListarLivro() {
             <tbody>
               {livros.map((livro) => (
                 <tr key={livro.id}>
-                  <td>{livro.id}</td>
                   <td>{livro.nome}</td>
                   <td>{livro.descricao}</td>
                   <td>{livro.autorId}</td>

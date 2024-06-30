@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ListarLivro from "./components/pages/livro/listar-livro";
+import ListarEmprestimo from "./components/pages/emprestimo/listar-emprestimo";
+import ListarReserva from "./components/pages/reserva/listar-reserva";
 //1 - Um componente SEMPRE deve começar com a primeira letra
 //maiúscula
 //2 - Todo componente DEVE ser uma função do JS
@@ -17,7 +19,13 @@ function App() {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to={"pages/livro/listar"}>Listar livros</Link> 
+              <Link to={"pages/livro/listar"}>Livros</Link> 
+            </li>
+            <li>
+              <Link to={"pages/emprestimo/listar"}>Empréstimos</Link>
+            </li>
+            <li>
+              <Link to={"pages/reserva/listar"}>Reservas</Link>
             </li>
           </ul>
         </nav>
@@ -25,6 +33,14 @@ function App() {
           <Route 
             path="pages/livro/listar"
             element={<ListarLivro />}
+          />
+          <Route
+            path="pages/emprestimo/listar"
+            element={<ListarEmprestimo />}
+          />
+          <Route
+            path="pages/reserva/listar"
+            element={<ListarReserva />}
           />
         </Routes>
 
