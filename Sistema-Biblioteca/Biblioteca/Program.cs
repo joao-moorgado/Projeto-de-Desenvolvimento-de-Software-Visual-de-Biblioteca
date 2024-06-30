@@ -3,9 +3,23 @@ using Biblioteca.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Registrar banco de dados na aplicação
 builder.Services.AddDbContext<AppDataContext>();
+
+
+// Configurar politica de CORS (Ligar front com back)
+builder.Services.AddCors(options =>
+        options.AddPolicy("Acesso Total",
+            configs => configs
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod())
+);
+
 var app = builder.Build();
 
+// Cadastrar livro
 app.MapPost("/api/livro/cadastrar", ([FromBody] Livro livro, [FromServices] AppDataContext ctx) => 
 {
     // Verifica se o livro existe
@@ -391,4 +405,5 @@ app.MapDelete("/api/reserva/deletar/{id}", ([FromRoute] string id, [FromServices
     return Results.Ok("Reserva removida com sucesso.");
 });
 
+app.UseCors("Acesso Total");
 app.Run();

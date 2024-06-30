@@ -11,7 +11,7 @@ function ListarLivro() {
       }, []);
     
       function carregarLivros() {
-        fetch("/api/livro/listar")
+        fetch("http://localhost:5296/api/livro/listar")
           .then((resposta) => resposta.json())
           .then((livros: Livro[]) => {
             console.table(livros);
@@ -35,6 +35,7 @@ function ListarLivro() {
           <table border={1}>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Título</th>
                 <th>Sinopse</th>
                 <th>Autor</th>
