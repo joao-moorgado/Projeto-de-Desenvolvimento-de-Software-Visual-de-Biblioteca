@@ -3,6 +3,7 @@ using System;
 using Biblioteca.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240629225723_AuteracaoLivro")]
+    partial class AuteracaoLivro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
@@ -32,8 +35,9 @@ namespace Biblioteca.Migrations
 
             modelBuilder.Entity("Biblioteca.Models.Emprestimo", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DataDevolucao")
                         .HasColumnType("TEXT");
@@ -41,17 +45,23 @@ namespace Biblioteca.Migrations
                     b.Property<DateTime?>("DataEmprestimo")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("LivroId")
+                    b.Property<int?>("LivroId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("LivroId1")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UsuarioId")
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UsuarioId1")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LivroId");
+                    b.HasIndex("LivroId1");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioId1");
 
                     b.ToTable("Emprestimos");
                 });
@@ -106,28 +116,35 @@ namespace Biblioteca.Migrations
 
             modelBuilder.Entity("Biblioteca.Models.Reserva", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DataReserva")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("EmprestimoId")
+                    b.Property<int?>("EmprestimoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("LivroId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("LivroId1")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("LivroId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("UsuarioId")
+                    b.Property<string>("UsuarioId1")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmprestimoId");
 
-                    b.HasIndex("LivroId");
+                    b.HasIndex("LivroId1");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioId1");
 
                     b.ToTable("Reservas");
                 });
@@ -149,11 +166,11 @@ namespace Biblioteca.Migrations
                 {
                     b.HasOne("Biblioteca.Models.Livro", "Livro")
                         .WithMany()
-                        .HasForeignKey("LivroId");
+                        .HasForeignKey("LivroId1");
 
                     b.HasOne("Biblioteca.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UsuarioId1");
 
                     b.Navigation("Livro");
 
@@ -177,23 +194,23 @@ namespace Biblioteca.Migrations
 
             modelBuilder.Entity("Biblioteca.Models.Reserva", b =>
                 {
-                    b.HasOne("Biblioteca.Models.Emprestimo", "Emprestimo")
+                    b.HasOne("Biblioteca.Models.Emprestimo", "emprestimo")
                         .WithMany()
                         .HasForeignKey("EmprestimoId");
 
                     b.HasOne("Biblioteca.Models.Livro", "Livro")
                         .WithMany()
-                        .HasForeignKey("LivroId");
+                        .HasForeignKey("LivroId1");
 
                     b.HasOne("Biblioteca.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId");
-
-                    b.Navigation("Emprestimo");
+                        .HasForeignKey("UsuarioId1");
 
                     b.Navigation("Livro");
 
                     b.Navigation("Usuario");
+
+                    b.Navigation("emprestimo");
                 });
 #pragma warning restore 612, 618
         }

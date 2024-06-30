@@ -10,6 +10,8 @@ public class Livro {
     public Autor? Autor{ get; set; }
     public string? GeneroId { get; set; }
     public Genero? Genero { get; set;}
+    public bool EstaEmprestado { get; set; }
+    public bool EstaReservado { get; set; }
     
     public Livro() {
         Id = Guid.NewGuid().ToString();
