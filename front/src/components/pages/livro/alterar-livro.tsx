@@ -33,7 +33,7 @@ function AlterarLivro() {
         disponibilidade: disponibilidade,
       };
       //FETCH ou AXIOS
-      fetch("http://localhost:5296/api/livro/alterar/${id}", {
+      fetch(`http://localhost:5296/api/livro/alterar/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
