@@ -1,45 +1,56 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Usuario } from "../../../models/Usuario";
 import { useNavigate } from "react-router-dom";
 
 function CadastrarUsuario() {
-    const navigate = useNavigate();
-    const [nome, setNome] = useState("");
-  
-    function cadastrarUsuario(e: any) {
-      const usuario: Usuario = {
-        nome: nome,
-      };
-  
-      //FETCH ou AXIOS
-      fetch("/api/usuario/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(usuario),
+  const navigate = useNavigate();
+  const [nome, setNome] = useState("");
+
+  function cadastrarUsuario(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const usuario: Usuario = {
+      nome: nome,
+    };
+
+    fetch("/api/usuario/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    })
+      .then((resposta) => resposta.json())
+      .then((usuario: Usuario) => {
+        navigate("/pages/usuario/listar");
       })
-        .then((resposta) => resposta.json())
-        .then((usuario: Usuario) => {
-          navigate("/pages/usuario/listar");
-        });
-      e.preventDefault();
-    }
-    return (
-      <div>
-        <h1>Cadastrar um Usuario</h1>
-        <form onSubmit={cadastrarUsuario}>
-          <label>Nome:</label>
+      .catch((error) => console.error("Erro ao cadastrar usuário:", error));
+  }
+
+  return (
+    <div className="container mt-4">
+      <h1>Cadastrar um Usuário</h1>
+      <form onSubmit={cadastrarUsuario}>
+        <div className="mb-3">
+          <label htmlFor="nome" className="form-label">
+            Nome:
+          </label>
           <input
             type="text"
+            className="form-control"
+            id="nome"
             placeholder="Digite o nome"
-            onChange={(e: any) => setNome(e.target.value)}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
           />
-          <br />
-          <button type="submit">Cadastrar</button>
-        </form>
-      </div>
-    );
-  }
-  
-  export default CadastrarUsuario;
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Cadastrar
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default CadastrarUsuario;

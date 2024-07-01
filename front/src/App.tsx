@@ -5,31 +5,30 @@ import ListarEmprestimo from "./components/pages/emprestimo/listar-emprestimo";
 import ListarReserva from "./components/pages/reserva/listar-reserva";
 import CadastrarReserva from "./components/pages/reserva/cadastrar-reserva";
 import CadastrarEmprestimo from "./components/pages/emprestimo/cadastrar-emprestimo";
-import CadastrarLivro from "./components/pages/livro/cadastrar-livro"; // Importe o componente de cadastro de livro aqui
+import CadastrarLivro from "./components/pages/livro/cadastrar-livro";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <BrowserRouter>
-        <header>
-          <h1>Sistema Biblioteca</h1>
+        <header className="mb-4">
+          <h1 className="text-center mt-4">Sistema Biblioteca</h1>
           <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
+            <ul className="nav nav-pills justify-content-center">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/pages/livro/listar">Livros</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/pages/livro/listar">Livros</Link>
               </li>
-              <li>
-                <Link to="/pages/emprestimo/listar">Empréstimos</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/pages/emprestimo/listar">Empréstimos</Link>
               </li>
-              <li>
-                <Link to="/pages/reserva/listar">Reservas</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/pages/reserva/listar">Reservas</Link>
               </li>
-              {/* Adicione um link para o cadastro de livro */}
-              <li>
-                <Link to="/pages/livro/cadastrar">Cadastrar Livro</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/pages/livro/cadastrar">Cadastrar Livro</Link>
               </li>
             </ul>
           </nav>
@@ -43,12 +42,11 @@ function App() {
             <Route path="/pages/reserva/listar" element={<ListarReserva />} />
             <Route path="/pages/reserva/realizar/:id" element={<CadastrarReserva />} />
             <Route path="/pages/emprestimo/realizar/:id" element={<CadastrarEmprestimo />} />
-            {/* Adicione a rota para o cadastro de livro */}
             <Route path="/pages/livro/cadastrar" element={<CadastrarLivro />} />
           </Routes>
         </main>
 
-        <footer>
+        <footer className="text-center mt-4">
           Desenvolvido por Alexandre Machado, Gabriela Guimarães e João Morgado
         </footer>
       </BrowserRouter>

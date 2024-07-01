@@ -66,44 +66,58 @@ function CadastrarEmprestimo() {
   }
 
   return (
-    <div>
-      <h1>Cadastrar um Emprestimo</h1>
+    <div className="container mt-4">
+      <h1 className="mb-4">Cadastrar um Empréstimo</h1>
       <form onSubmit={handleCadastrarEmprestimo}>
-        <label>Livro:</label>
-        <select value={livroId} onChange={(e: any) => setLivroId(e.target.value)}>
-          <option value="">Selecione um livro</option>
-          {livros.map((livro) => (
-            <option value={livro.id} key={livro.id}>
-              {livro.nome}
-            </option>
-          ))}
-        </select>
-        <br />
-        <label>Usuario:</label>
-        <select value={usuarioId} onChange={(e: any) => setUsuarioId(e.target.value)}>
-          <option value="">Selecione um usuário</option>
-          {usuarios.map((usuario) => (
-            <option value={usuario.id} key={usuario.id}>
-              {usuario.nome}
-            </option>
-          ))}
-        </select>
-        <br />
-        <label>Data do Emprestimo:</label>
-        <input
-          type="date"
-          value={dataEmprestimo}
-          onChange={(e: any) => setDataEmprestimo(e.target.value)}
-        />
-        <br />
-        <label>Data da Devolução:</label>
-        <input
-          type="date"
-          value={dataDevolucao}
-          onChange={(e: any) => setDataDevolucao(e.target.value)}
-        />
-        <br />
-        <button type="submit">Cadastrar</button>
+        <div className="mb-3">
+          <label htmlFor="livroId" className="form-label">Livro:</label>
+          <select
+            className="form-select"
+            value={livroId}
+            onChange={(e: any) => setLivroId(e.target.value)}
+          >
+            <option value="">Selecione um livro</option>
+            {livros.map((livro) => (
+              <option value={livro.id} key={livro.id}>
+                {livro.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="usuarioId" className="form-label">Usuário:</label>
+          <select
+            className="form-select"
+            value={usuarioId}
+            onChange={(e: any) => setUsuarioId(e.target.value)}
+          >
+            <option value="">Selecione um usuário</option>
+            {usuarios.map((usuario) => (
+              <option value={usuario.id} key={usuario.id}>
+                {usuario.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="dataEmprestimo" className="form-label">Data do Empréstimo:</label>
+          <input
+            type="date"
+            className="form-control"
+            value={dataEmprestimo}
+            onChange={(e: any) => setDataEmprestimo(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="dataDevolucao" className="form-label">Data da Devolução:</label>
+          <input
+            type="date"
+            className="form-control"
+            value={dataDevolucao}
+            onChange={(e: any) => setDataDevolucao(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   );

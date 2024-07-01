@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Reserva } from "../../../models/Reserva";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -44,34 +44,43 @@ function AlterarReserva() {
   }
 
   return (
-    <div>
+    <div className="container mt-4">
       <h1>Alterar Reserva</h1>
       <form onSubmit={alterarReserva}>
-        <label>Data da Reserva:</label>
-        <input
-          type="text"
-          value={dataReserva}
-          placeholder="Digite a data da Reserva"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataReserva(e.target.value)}
-        />
-        <br />
-        <label>Livro ID:</label>
-        <input
-          type="text"
-          value={livroId}
-          placeholder="Digite o ID do Livro"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLivroId(e.target.value)}
-        />
-        <br />
-        <label>Usuário ID:</label>
-        <input
-          type="text"
-          value={usuarioId}
-          placeholder="Digite o ID do Usuário"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsuarioId(e.target.value)}
-        />
-        <br />
-        <button type="submit">Salvar</button>
+        <div className="mb-3">
+          <label htmlFor="dataReserva" className="form-label">Data da Reserva:</label>
+          <input
+            type="text"
+            id="dataReserva"
+            className="form-control"
+            value={dataReserva}
+            placeholder="Digite a data da Reserva"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataReserva(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="livroId" className="form-label">Livro ID:</label>
+          <input
+            type="text"
+            id="livroId"
+            className="form-control"
+            value={livroId}
+            placeholder="Digite o ID do Livro"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLivroId(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="usuarioId" className="form-label">Usuário ID:</label>
+          <input
+            type="text"
+            id="usuarioId"
+            className="form-control"
+            value={usuarioId}
+            placeholder="Digite o ID do Usuário"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsuarioId(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Salvar</button>
       </form>
     </div>
   );

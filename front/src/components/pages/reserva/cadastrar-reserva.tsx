@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Reserva } from "../../../models/Reserva";
 import { Livro } from "../../../models/Livro";
 import { Usuario } from "../../../models/Usuario";
@@ -26,30 +26,27 @@ function CadastrarReserva() {
     fetch("/api/livro/listar")
       .then((resposta) => resposta.json())
       .then((livros: Livro[]) => {
-        console.log("Livros carregados:", livros); // Log dos livros carregados
         setLivros(livros);
       })
-      .catch((error) => console.error("Erro ao carregar livros:", error)); // Log de erro
+      .catch((error) => console.error("Erro ao carregar livros:", error));
   }
 
   function carregarUsuarios() {
     fetch("/api/usuario/listar")
       .then((resposta) => resposta.json())
       .then((usuarios: Usuario[]) => {
-        console.log("Usuarios carregados:", usuarios); // Log dos usuários carregados
         setUsuarios(usuarios);
       })
-      .catch((error) => console.error("Erro ao carregar usuarios:", error)); // Log de erro
+      .catch((error) => console.error("Erro ao carregar usuários:", error));
   }
 
   function carregarEmprestimos() {
     fetch("/api/emprestimo/listar")
       .then((resposta) => resposta.json())
       .then((emprestimos: Emprestimo[]) => {
-        console.log("Empréstimos carregados:", emprestimos); // Log dos empréstimos carregados
         setEmprestimos(emprestimos);
       })
-      .catch((error) => console.error("Erro ao carregar emprestimos:", error)); // Log de erro
+      .catch((error) => console.error("Erro ao carregar empréstimos:", error));
   }
 
   function handleCadastrarReserva(e: any) {
@@ -62,8 +59,6 @@ function CadastrarReserva() {
       dataReserva: dataReserva,
     };
 
-    console.log("Dados da reserva:", reserva); // Log dos dados da reserva
-
     fetch("/api/reserva/cadastrar", {
       method: "POST",
       headers: {
@@ -73,54 +68,74 @@ function CadastrarReserva() {
     })
       .then((resposta) => resposta.json())
       .then((reserva: Reserva) => {
-        console.log("Reserva cadastrada:", reserva); // Log da reserva cadastrada
         navigate("/pages/reserva/listar");
       })
-      .catch((error) => console.error("Erro ao cadastrar reserva:", error)); // Log de erro
+      .catch((error) => console.error("Erro ao cadastrar reserva:", error));
   }
 
   return (
-    <div>
+    <div className="container mt-4">
       <h1>Cadastrar uma Reserva</h1>
       <form onSubmit={handleCadastrarReserva}>
-        <label>Livro:</label>
-        <select value={livroId} onChange={(e: any) => setLivroId(e.target.value)}>
-          <option value="">Selecione um livro</option>
-          {livros.map((livro) => (
-            <option value={livro.id} key={livro.id}>
-              {livro.nome}
-            </option>
-          ))}
-        </select>
-        <br />
-        <label>Usuario:</label>
-        <select value={usuarioId} onChange={(e: any) => setUsuarioId(e.target.value)}>
-          <option value="">Selecione um usuário</option>
-          {usuarios.map((usuario) => (
-            <option value={usuario.id} key={usuario.id}>
-              {usuario.nome}
-            </option>
-          ))}
-        </select>
-        <br />
-        <label>Emprestimo:</label>
-        <select value={emprestimoId} onChange={(e: any) => setEmprestimoId(e.target.value)}>
-          <option value="">Selecione um empréstimo</option>
-          {emprestimos.map((emprestimo) => (
-            <option value={emprestimo.id} key={emprestimo.id}>
-              {emprestimo.dataDevolucao}
-            </option>
-          ))}
-        </select>
-        <br />
-        <label>Data da Reserva:</label>
-        <input
-          type="date"
-          value={dataReserva}
-          onChange={(e: any) => setDataReserva(e.target.value)}
-        />
-        <br />
-        <button type="submit">Cadastrar</button>
+        <div className="mb-3">
+          <label htmlFor="livroId" className="form-label">Livro:</label>
+          <select
+            id="livroId"
+            className="form-select"
+            value={livroId}
+            onChange={(e: any) => setLivroId(e.target.value)}
+          >
+            <option value="">Selecione um livro</option>
+            {livros.map((livro) => (
+              <option key={livro.id} value={livro.id}>
+                {livro.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="usuarioId" className="form-label">Usuário:</label>
+          <select
+            id="usuarioId"
+            className="form-select"
+            value={usuarioId}
+            onChange={(e: any) => setUsuarioId(e.target.value)}
+          >
+            <option value="">Selecione um usuário</option>
+            {usuarios.map((usuario) => (
+              <option key={usuario.id} value={usuario.id}>
+                {usuario.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="emprestimoId" className="form-label">Empréstimo:</label>
+          <select
+            id="emprestimoId"
+            className="form-select"
+            value={emprestimoId}
+            onChange={(e: any) => setEmprestimoId(e.target.value)}
+          >
+            <option value="">Selecione um empréstimo</option>
+            {emprestimos.map((emprestimo) => (
+              <option key={emprestimo.id} value={emprestimo.id}>
+                {emprestimo.dataDevolucao}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="dataReserva" className="form-label">Data da Reserva:</label>
+          <input
+            id="dataReserva"
+            type="date"
+            className="form-control"
+            value={dataReserva}
+            onChange={(e: any) => setDataReserva(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   );

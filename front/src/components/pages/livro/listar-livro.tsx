@@ -32,10 +32,10 @@ function ListarLivro() {
   }
 
   return (
-    <div>
-      <h1>Biblioteca de Livros: </h1>
-      <table border={1}>
-        <thead>
+    <div className="container mt-4">
+      <h1>Biblioteca de Livros</h1>
+      <table className="table table-bordered mt-4">
+        <thead className="table-dark">
           <tr>
             <th>Título</th>
             <th>Sinopse</th>
@@ -57,18 +57,24 @@ function ListarLivro() {
               <td>{livro.autorId}</td>
               <td>{livro.generoId}</td>
               <td>{livro.dataPublicacao}</td>
-              <td>{livro.disponibilidade}</td>
+              <td>{livro.disponibilidade.toString()}</td>
               <td>
-                <Link to={`/pages/reserva/realizar/${livro.id}`}>Reservar</Link>
+                <Link to={`/pages/reserva/realizar/${livro.id}`} className="btn btn-primary">
+                  Reservar
+                </Link>
               </td>
               <td>
-                <Link to={`/pages/emprestimo/realizar/${livro.id}`}>Emprestar</Link>
+                <Link to={`/pages/emprestimo/realizar/${livro.id}`} className="btn btn-success">
+                  Emprestar
+                </Link>
               </td>
               <td>
-                <Link to={`/pages/livro/alterar/${livro.id}`}>Alterar</Link>
+                <Link to={`/pages/livro/alterar/${livro.id}`} className="btn btn-warning">
+                  Alterar
+                </Link>
               </td>
               <td>
-                <button onClick={() => deletar(livro.id ||"")}>
+                <button onClick={() => deletar(livro.id || "")} className="btn btn-danger">
                   Deletar
                 </button>
               </td>
@@ -81,4 +87,3 @@ function ListarLivro() {
 }
 
 export default ListarLivro;
-
