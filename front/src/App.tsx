@@ -5,8 +5,8 @@ import ListarEmprestimo from "./components/pages/emprestimo/listar-emprestimo";
 import ListarReserva from "./components/pages/reserva/listar-reserva";
 import CadastrarReserva from "./components/pages/reserva/cadastrar-reserva";
 import CadastrarEmprestimo from "./components/pages/emprestimo/cadastrar-emprestimo";
+import CadastrarLivro from "./components/pages/livro/cadastrar-livro"; // Importe o componente de cadastro de livro aqui
 
-// Componente principal do aplicativo
 function App() {
   return (
     <div>
@@ -27,6 +27,10 @@ function App() {
               <li>
                 <Link to="/pages/reserva/listar">Reservas</Link>
               </li>
+              {/* Adicione um link para o cadastro de livro */}
+              <li>
+                <Link to="/pages/livro/cadastrar">Cadastrar Livro</Link>
+              </li>
             </ul>
           </nav>
         </header>
@@ -39,6 +43,8 @@ function App() {
             <Route path="/pages/reserva/listar" element={<ListarReserva />} />
             <Route path="/pages/reserva/realizar/:id" element={<CadastrarReserva />} />
             <Route path="/pages/emprestimo/realizar/:id" element={<CadastrarEmprestimo />} />
+            {/* Adicione a rota para o cadastro de livro */}
+            <Route path="/pages/livro/cadastrar" element={<CadastrarLivro />} />
           </Routes>
         </main>
 
