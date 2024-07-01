@@ -16,17 +16,19 @@ function ListarLivro() {
       .then((livros: Livro[]) => {
         console.table(livros);
         setLivros(livros);
-      });
+      })
+      .catch((error) => console.error("Erro ao carregar livros:", error));
   }
 
   function deletar(id: string) {
     console.log(`Id: ${id}`);
     axios
-      .delete(`/api/livro/deletar/${id}`)
+      .delete(`http://localhost:5296/api/livro/deletar/${id}`)
       .then((resposta) => {
         console.log(resposta.data);
         setLivros((prevLivros) => prevLivros.filter((livro) => livro.id !== id));
-      });
+      })
+      .catch((error) => console.error("Erro ao deletar livro:", error));
   }
 
   return (
@@ -38,7 +40,7 @@ function ListarLivro() {
             <th>Título</th>
             <th>Sinopse</th>
             <th>Autor</th>
-            <th>Genero</th>
+            <th>Gênero</th>
             <th>Data de Publicação</th>
             <th>Disponibilidade</th>
             <th>Reservar</th>
@@ -66,11 +68,7 @@ function ListarLivro() {
                 <Link to={`/pages/livro/alterar/${livro.id}`}>Alterar</Link>
               </td>
               <td>
-                <button
-                  onClick={() => {
-                    deletar(livro.id!);
-                  }}
-                >
+                <button onClick={() => deletar(livro.id ||"")}>
                   Deletar
                 </button>
               </td>
